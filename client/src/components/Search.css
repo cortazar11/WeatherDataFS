@@ -1,0 +1,23 @@
+.input-icon {
+  position: absolute;
+  left: 1rem;
+  top: calc(
+    70% - 0.4em
+  ); /* Keep icon in center of input, regardless of the input height */
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.ui.form {
+  margin-top: 15rem;
+}
+
+.ui.form .field > label {
+  text-align: center;
+}
+
+input#city {
+  padding-left: 3rem;
+}
