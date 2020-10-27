@@ -3,29 +3,9 @@
   grid-template: 0.3fr 2fr 3fr / 1fr;
 }
 
-.header {
-  grid-area: 1 / 1 / 1 / 1;
-  padding: 5%;
-  display: grid;
-  grid-template: 1fr / 6fr 1fr;
-  border-bottom: 5px solid black;
-}
-
-.city-time {
-  grid-area: 1 / 1 / 1 / 1;
-}
-
-.button {
-  grid-area: 1 / 2 / 1 / 2;
-}
-
 .button-sm {
   background-color: transparent;
   border: none;
-}
-
-.ui .button {
-  background-color: #f6eeee;
 }
 
 .weather-details {
@@ -57,12 +37,6 @@ p {
   .wrapper {
     grid-template: 1fr 6fr / 1fr 1.5fr;
     grid-area: 1 / 1 / 1 / span 2;
-  }
-
-  .header {
-    grid-area: 1 / 1 / 1 / span 2;
-    padding: 0 0 0 2%;
-    align-items: center;
   }
 
   .weather-details {

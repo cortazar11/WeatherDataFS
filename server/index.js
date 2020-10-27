@@ -1,14 +1,16 @@
 const express = require('express');
 const mongoose=require('mongoose');
-const cookieSession=require('cookie-session');
+const cookieSession = require('cookie-session');
 const passport= require('passport');
+const bodyParser=require('body-parser');
 require('./models/User');
 require('./services/passport')
 
-const authRoutes=require('./routes/authRoutes');
+
 const keys=require('./config/keys')
 
 const app = express();
+app.use(bodyParser.json())
 app.use(cookieSession({
   maxAge: 30 * 24 * 60 * 60 * 1000,
   keys: [keys.cookieKey]
@@ -17,11 +19,15 @@ app.use(cookieSession({
 app.use(passport.initialize())
 app.use(passport.session())
 
-authRoutes(app)
+
+require('./routes/authRoutes')(app);
+require('./routes/billingRoutes')(app);
 
 mongoose.connect(keys.mongoURI, { useUnifiedTopology: true,useNewUrlParser: true },()=>{
   console.log('mongo connected')
 })
+
+
 
 const PORT = process.env.PORT || 5000;
 

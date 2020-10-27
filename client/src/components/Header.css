@@ -1,0 +1,29 @@
+.header {
+  grid-area: 1 / 1 / 1 / 1;
+  padding: 5%;
+  display: grid;
+  grid-template: 1fr / 6fr 1fr;
+  border-bottom: 1px solid black;
+}
+
+.nav-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul.right {
+  display: flex;
+  list-style-type: none;
+}
+
+ul.right li {
+  padding: 0 5px;
+}
+@media only screen and (min-width: 600px) {
+  .header {
+    grid-area: 1 / 1 / 1 / span 2;
+    padding: 0 0 0 2%;
+    align-items: center;
+  }
+}

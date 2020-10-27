@@ -7,8 +7,10 @@ import thunk from 'redux-thunk';
 import App from './components/App';
 import reducers from './reducers';
 
+
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(reducers,{}, composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <Provider store={store}>
@@ -16,3 +18,6 @@ ReactDOM.render(
   </Provider>,
   document.querySelector('#root')
 );
+
+console.log('STRIPE_KEY', process.env.REACT_APP_STRIPE_KEY)
+console.log('Environment is',process.env.NODE_ENV)

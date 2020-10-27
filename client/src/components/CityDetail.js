@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Header from './Header';
 
 import moment from 'moment';
 
@@ -13,7 +14,7 @@ class CityDetail extends React.Component {
   };
 
   handleClick = (e) => {
-    console.log('algo aqui', e.target);
+    
     this.setState((prevState) => {
       return {
         isToogle: !prevState.isToogle,
@@ -23,8 +24,7 @@ class CityDetail extends React.Component {
   };
 
   renderList() {
-    const styleButtonRed={color: 'red'}
-    const styleButtonBlack={color: 'black'}
+    
     const results = this.props.weather;
     const resultsPhotos = this.props.photos;
 
@@ -38,13 +38,12 @@ class CityDetail extends React.Component {
       .unix(timeUnix)
       .format('dddd, MMMM Do YYYY, h:mm:ss a');
     const summary = results.currently ? results.currently.summary : null;
-    const icon = results.currently ? results.currently.icon : null;
+   
     const temperatureF = results.currently
       ? results.currently.temperature
       : null;
     const temperatureC = (((parseFloat(temperatureF) - 32) * 5) / 9).toFixed(2);
     const temperature = this.state.isToogle ? temperatureC : temperatureF;
-    console.log('temperatureC', temperatureC);
     const humidity = results.currently
       ? (results.currently.humidity * 100).toFixed(2)
       : null;
@@ -80,17 +79,7 @@ class CityDetail extends React.Component {
       return (
         <div className="wrapper">
           <div className="header">
-            <div className="city-time">
-              <h1
-                style={{ color: '#263922' }}
-              >{`${city} (${county}, ${country})`}</h1>
-              <h3>{calendar}</h3>
-            </div>
-            
-            <a href="/">
-              <button className="ui button">Back</button>
-            </a>
-            
+            <Header city={city} county={county} country={country} calendar={calendar}/>
           </div>
           
           <div className="item weather-details">
@@ -189,9 +178,7 @@ class CityDetail extends React.Component {
   }
 
   render() {
-    console.log('weather', this.props.weather);
-    console.log('photos', this.props.photos);
-    console.log('term', this.props.term.components);
+    
     return (
       <div className="containerCity">
         <div>{this.renderList()}</div>

@@ -1,6 +1,8 @@
 import opencage from '../api/opencage';
 import darksky from '../api/darksky';
 import unsplash from '../api/unsplash';
+import axios from 'axios';
+import {FETCH_USER} from './types';
 
 // Action Creator List Cities
 export const fetchPosts = (formValue) => {
@@ -55,3 +57,25 @@ export const fetchPhotos = (selectedPlace) => {
     });
   };
 };
+
+// ACTION CREATOR FETCH_USER
+export const fetchUser=()=>{
+      return async (dispatch)=>{
+            const res = await axios.get('/api/current_user');
+            console.log('res',res)
+            dispatch({ type: FETCH_USER, payload: res.data });
+      }
+      
+}
+
+// HANDLE STRIPE TOKEN
+export const handleToken=(token)=>{
+  return async (dispatch)=>{
+    const res=await axios.post('/api/stripe',token)
+
+    dispatch({
+      type: FETCH_USER,
+      payload: res.data
+    })
+}
+}
